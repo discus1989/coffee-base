@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>CoffeeBase | コーヒー好きのためのストックアプリ</title>
+    <!-- bootstrap4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="beans.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    
+    <!-- wrapper start-->
+    <div class="wrapper">
+      <!-- main area start -->
+      <div class="main">
+        <!--header area start-->
+        <header>
+          <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="navtop">
+            <a href="#" class="navbar-bland"><i class="fas fa-mug-hot"></i>Coffee Base</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav-bar">
+              <ul class="navbar-nav">
+                <div class="visible-on-logout">
+                  <li class="nav-item"><a href="#" class="nav-link" id="login-button"><i class="fas fa-user"></i>Log In</a></li>
+                </div>
+                <div class="visible-on-logout">
+                  <li class="nav-item"><a href="#" class="nav-link" id="signup-button"><i class="fas fa-user"></i>Sign up</a></li>
+                </div>
+                <div class="visible-on-login">
+                  <li class="nav-item"><a href="#" class="nav-link" id="logout-button"><i class="fas fa-briefcase"></i>Log Out</a></li>
+                </div>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <!--header area end-->
+        
+        <!-- top area start -->
+        <div class="top">
+          <div class="title">
+            <div class="title-intro">
+              <h1 class="title-name">Coffee Base</h1>
+              <h2 class="title-intro">コーヒー好きのためのストックアプリ</h2>
+            </div>
+          </div>
+          
+          <h4>コーヒー豆一覧</h4>
+          <div class="coffee-item">
+            <div class="coffee-image-wrapper">
+              <img class="coffee-item-image" alt="" src="../assets/demo1.jpg">
+            </div>
+            <div class="coffee-detail">
+              <div class="coffee-item-name">アマゾンコーヒー</div>
+              <div class="coffee-item-delete-wrapper">
+                <button class="btn btn-danger coffee-item-delete">削除</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="coffee-item">
+            <div class="coffee-image-wrapper">
+              <img class="coffee-item-image" alt="" src="photos/demo.jpg">
+            </div>
+            <div class="coffee-detail">
+              <div class="coffee-item-name">アメリカコーヒー</div>
+              <div class="coffee-item-delete-wrapper">
+                <button class="btn btn-danger coffee-item-delete">削除</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="coffee-item">
+            <div class="coffee-image-wrapper">
+              <img class="coffee-item-image" alt="" src="photos/demo.jpg">
+            </div>
+            <div class="coffee-detail">
+              <div class="coffee-item-name">ブラジルコーヒー</div>
+              <div class="coffee-item-delete-wrapper">
+                <button class="btn btn-danger coffee-item-delete">削除</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="coffee-item">
+            <div class="coffee-image-wrapper">
+              <img class="coffee-item-image" alt="" src="photos/demo.jpg">
+            </div>
+            <div class="coffee-detail">
+              <div class="coffee-item-name">メキシココーヒー</div>
+              <div class="coffee-item-delete-wrapper">
+                <button class="btn btn-danger coffee-item-delete">削除</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="coffee-item">
+            <div class="coffee-image-wrapper">
+              <img class="coffee-item-image" alt="" src="photos/demo.jpg">
+            </div>
+            <div class="coffee-detail">
+              <div class="coffee-item-name">エチオピアコーヒー</div>
+              <div class="coffee-item-delete-wrapper">
+                <button class="btn btn-danger coffee-item-delete">削除</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="coffee-item">
+            <div class="coffee-image-wrapper">
+              <img class="coffee-item-image" alt="" src="photos/demo.jpg">
+            </div>
+            <div class="coffee-detail">
+              <div class="coffee-item-name">コナコーヒー</div>
+              <div class="coffee-item-delete-wrapper">
+                <button class="btn btn-danger coffee-item-delete">削除</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- top area end -->
+      </div>
+      <!--main area end-->
+  
+      <!--side area start-->
+      <div class="sidebar">
+        <div class="menu">
+          <h2 class="menu-text">Menu</h2>
+          <ul>
+            <li><a href="#">コーヒー登録</a></li>
+            <li><a href="#">道具登録</a></li>
+            <li><a href="#">コーヒー豆一覧</a></li>
+            <li><a href="#">道具一覧</a></li>
+            <li><a href="#">ショップ一覧</a></li>
+          </ul>
+        </div>
+        <div class="logout">
+          <button type="button">Log Out</button>
+        </div>
+      </div>
+      <!--side area end-->
+      
+    </div>
+    <!-- wrapper end -->
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+    
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyC3g1hbFcZSnHwfszRIrcwDkxpZk8lH-og",
+        authDomain: "coffeebase-61e0c.firebaseapp.com",
+        databaseURL: "https://coffeebase-61e0c.firebaseio.com",
+        projectId: "coffeebase-61e0c",
+        storageBucket: "coffeebase-61e0c.appspot.com",
+        messagingSenderId: "1097494948665",
+        appId: "1:1097494948665:web:81290a5c1e2311489356e8",
+        measurementId: "G-25CRVJVBYY"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--<script src="js/main.js"></script>-->
+  </body>
+</html>
