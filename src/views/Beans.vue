@@ -1,4 +1,5 @@
 <template>
+  
   <!-- wrapper start-->
   <div class="wrapper">
     <!-- main area start -->
@@ -6,7 +7,7 @@
       <!--header area start-->
       <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="navtop">
-          <router-link to="/index" class="navbar-bland"><i class="fas fa-mug-hot"></i>Coffee Base</router-link>
+          <a href="#" class="navbar-bland"><i class="fas fa-mug-hot"></i>Coffee Base</a>
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -36,13 +37,13 @@
           </div>
         </div>
         
-        <h4>最近買ったもの</h4>
+        <h4>コーヒー豆一覧</h4>
         <div class="coffee-item">
           <div class="coffee-image-wrapper">
-            <router-link to="/show"><img class="coffee-item-image" alt="" src="../assets/demo1.jpg"></router-link>
+            <img class="coffee-item-image" alt="" src="../assets/demo1.jpg">
           </div>
           <div class="coffee-detail">
-            <router-link to="/show"><div class="coffee-item-name">アマゾンコーヒー</div></router-link>
+            <div class="coffee-item-name">アマゾンコーヒー</div>
             <div class="coffee-item-delete-wrapper">
               <button class="btn btn-danger coffee-item-delete">削除</button>
             </div>
@@ -116,9 +117,10 @@
     <!--side area start-->
     <SideBar></SideBar>
     <!--side area end-->
-    
+
   </div>
   <!-- wrapper end -->
+    
 </template>
 
 <script>
@@ -131,9 +133,7 @@ export default {
 };
 </script>
 
-
 <style scoped>
-
 /* 全体の設定 */
 .wrapper {
   display: flex;
@@ -221,5 +221,4 @@ export default {
   outline-color: #dc3545;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
 }
-  
 </style>

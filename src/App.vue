@@ -1,14 +1,24 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> | 
-      <router-link to="/index">Index</router-link>
+      <router-link to="/">Vue.js CLI</router-link> |
+      <router-link to="/index">Home</router-link>
     </div>
+    <!--<Header />-->
     <router-view/>
-    <button class="btn btn-primary">test</button>
+    
   </div>
 </template>
+
+<script>
+import 'normalize.css'
+export default {
+  name: 'App',
+}
+// import Header from './views/Header.vue'
+
+
+</script>
 
 <style>
 #app {
