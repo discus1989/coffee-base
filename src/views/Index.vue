@@ -1,10 +1,13 @@
 <template>
   <!-- wrapper start-->
   <div class="wrapper">
+   　<!--サインインコンポーネント-->
+    <signin v-if="clicked" />
     <!-- main area start -->
     <div class="main">
       <!--header area start-->
       <Header></Header>
+      <button type="button" @click="clicked = !clicked">ボタンクリック</button>
       <!--header area end-->
       
       <!-- top area start -->
@@ -104,12 +107,19 @@
 <script>
 import SideBar from '@/components/SideBar.vue';
 import Header from '@/components/Header.vue';
+import Signin from '@/views/Signin.vue';
 
 export default {
   name: 'Index',
   components: {
     SideBar,
-    Header
+    Header,
+    Signin
+  },
+  data: function () {
+    return {
+      clicked: false,
+    };
   },
   methods: {
     

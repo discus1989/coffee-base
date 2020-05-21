@@ -18,7 +18,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyC3g1hbFcZSnHwfszRIrcwDkxpZk8lH-og",
   authDomain: "coffeebase-61e0c.firebaseapp.com",
   databaseURL: "https://coffeebase-61e0c.firebaseio.com",
