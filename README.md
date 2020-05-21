@@ -7,11 +7,11 @@
 また買いたくなった時にどこで買ったかすぐ思い出せます。
 
 ## 使用技術
-Vue CLI、Firebaseを利用したSPA
-言語：JavaScript HTML CSS
-フレームワーク：Vue.js Bootstrap4 
-使用ツール：VueCLI Firebase Normalize.css FontAwesome
-開発環境
+Vue CLI、Firebaseを利用したSPA<br>
+言語：JavaScript HTML CSS<br>
+フレームワーク：Vue.js Bootstrap4 <br>
+使用ツール：VueCLI Firebase Normalize.css FontAwesome<br>
+開発環境 :<br>
 <ul>
  <li>vue/cli 4.3.1</li>
  <li>node.js 10.18.1</li>
