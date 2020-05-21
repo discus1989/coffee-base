@@ -14,8 +14,28 @@
       </ul>
     </div>
     <div class="logout">
-      <button type="button">Log Out</button>
+      <button type="button" v-on:click="signOut">Sign Out</button>
     </div>
   </div>
 </template>
 <!--side area end-->
+
+<script>
+export default {
+  name: 'SideBar',
+  methods: {
+    signOut: function() {
+      firebase.auth()
+              .signOut()
+              .then(() => {
+                alert('Sign Out now.');
+                this.$router.push('/');
+              })
+              .catch((error) => {
+                alert('Sign Out error');
+                console.log('Sign Out error');
+              })
+    }
+  }
+};
+</script>

@@ -1,7 +1,9 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue' //add
+import BootstrapVue from 'bootstrap-vue' //bootstrap
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Signup from '../views/Signup.vue'
+import Signin from '../views/Signin.vue'
 import Index from '../views/Index.vue'
 import Show from '../views/Show.vue'
 import Beans from '../views/Beans.vue'
@@ -11,14 +13,24 @@ import Shops from '../views/Shops.vue'
 Vue.use(VueRouter)
 Vue.use(BootstrapVue) //add
 
-import 'bootstrap/dist/css/bootstrap.css' //add
-import 'bootstrap-vue/dist/bootstrap-vue.css' //add
+import 'bootstrap/dist/css/bootstrap.css' //bootstrap
+import 'bootstrap-vue/dist/bootstrap-vue.css' //bootstrap
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/signin',
+    name: 'Signin',
+    component: Signin
   },
   {
     path: '/index',

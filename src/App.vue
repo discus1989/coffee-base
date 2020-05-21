@@ -2,11 +2,14 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Vue.js CLI</router-link> |
-      <router-link to="/index">Home</router-link>
+      <router-link to="/index">Home</router-link> | 
+      <router-link to="/signup">Sign Up</router-link> | 
+      <router-link to="/signin">Sign In</router-link>
     </div>
     <!--<Header />-->
     <router-view/>
-    
+    <font-awesome-icon icon="user-secret" />
+    <font-awesome-icon icon="coffee" />
   </div>
 </template>
 

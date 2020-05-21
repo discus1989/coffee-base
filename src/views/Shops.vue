@@ -4,27 +4,7 @@
     <!-- main area start -->
     <div class="main">
       <!--header area start-->
-      <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="navtop">
-          <a href="#" class="navbar-bland"><i class="fas fa-mug-hot"></i>Coffee Base</a>
-          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="nav-bar">
-            <ul class="navbar-nav">
-              <div class="visible-on-logout">
-                <li class="nav-item"><a href="#" class="nav-link" id="login-button"><i class="fas fa-user"></i>Log In</a></li>
-              </div>
-              <div class="visible-on-logout">
-                <li class="nav-item"><a href="#" class="nav-link" id="signup-button"><i class="fas fa-user"></i>Sign up</a></li>
-              </div>
-              <div class="visible-on-login">
-                <li class="nav-item"><a href="#" class="nav-link" id="logout-button"><i class="fas fa-briefcase"></i>Log Out</a></li>
-              </div>
-            </ul>
-          </div>
-        </nav>
-      </header>
+      <Header></Header>
       <!--header area end-->
       
       <!-- top area start -->
@@ -69,10 +49,12 @@
 
 <script>
 import SideBar from '@/components/SideBar.vue';
+import Header from '@/components/Header.vue';
 export default {
   name: 'Index',
   components: {
-    SideBar
+    SideBar,
+    Header
   }
 };
 </script>
