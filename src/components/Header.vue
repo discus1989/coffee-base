@@ -8,13 +8,13 @@
       </button>
       <div class="collapse navbar-collapse" id="nav-bar">
         <ul class="navbar-nav">
-          <div class="visible-on-logout">
-            <li class="nav-item"><a href="#" class="nav-link" id="login-button"><i class="fas fa-user"></i>Log In</a></li>
+          <div class="visible-on-logout" v-if="!currentState">
+            <li class="nav-item"><a href="#" class="nav-link" id="login-button" v-on:click="loginView"><i class="fas fa-user"></i>Log In</a></li>
           </div>
-          <div class="visible-on-logout">
-            <li class="nav-item"><a href="#" class="nav-link" id="signup-button"><i class="fas fa-user"></i>Sign up</a></li>
+          <div class="visible-on-logout" v-if="!currentState">
+            <li class="nav-item"><a href="#" class="nav-link" id="signup-button" v-on:click="signupView"><i class="fas fa-user"></i>Sign up</a></li>
           </div>
-          <div class="visible-on-login">
+          <div class="visible-on-login" v-if="currentState">
             <li class="nav-item"><a href="#" class="nav-link" id="logout-button"><i class="fas fa-briefcase"></i>Log Out</a></li>
           </div>
         </ul>
@@ -23,3 +23,18 @@
   </header>
 </template>
 <!--header area end-->
+
+<script>
+export default {
+  name: 'Header',
+  props: ['currentState'],
+  methods: {
+    loginView: function() {
+      this.$emit('on-login-view-header', (true));
+    },
+    signupView: function() {
+      this.$emit('on-signup-view-header', (true));
+    }
+  }
+}
+</script>

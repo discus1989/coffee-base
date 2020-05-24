@@ -11,10 +11,11 @@
         <li><router-link to="/shops">ショップ一覧</router-link></li>
         <li><a href="#">ショップ詳細</a></li>
         <li><router-link to="/show">show</router-link></li>
+        <li><a href="#" v-on:click="loginView">Log In</a></li>
       </ul>
     </div>
     <div class="logout">
-      <button type="button" v-on:click="signOut">Sign Out</button>
+      <button type="button" v-on:click="logOut">Log Out</button>
     </div>
   </div>
 </template>
@@ -24,18 +25,22 @@
 export default {
   name: 'SideBar',
   methods: {
-    signOut: function() {
+    logOut: function() {
       firebase.auth()
               .signOut()
               .then(() => {
-                alert('Sign Out now.');
-                this.$router.push('/');
+                alert('Log Out. Bye.');
+                this.$emit('success-logout', false);
               })
               .catch((error) => {
                 alert('Sign Out error');
                 console.log('Sign Out error');
               })
+    },
+    loginView: function() {
+      this.$emit('on-login-view-side', (true));
     }
   }
+  
 };
 </script>

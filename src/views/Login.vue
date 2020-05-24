@@ -1,13 +1,13 @@
 <template>
   <div class="back">
-    <div class="signup">
-      <h2>Sign up</h2>
+    <div class="login">
+      <h2>Log in</h2>
       <input type="text" placeholder="Username" v-model="username">
       <input type="password" placeholder="Password" v-model="password">
-      <button v-on:click='signUp'>Register</button>
+      <button v-on:click="logIn" class="loginbtn">Log In</button>
       <button v-on:click="toIndex" class="returnbtn">Return</button>
-      <p>Do you have an account? 
-        <a href="#" v-on:click="moveLogin">Log In now!!</a>
+      <p>You don't have an account? 
+        <a href="#" v-on:click="newUser">create account now!!</a>
       </p>
     </div>
   </div>
@@ -17,33 +17,33 @@
 import firebase from 'firebase'
 
 export default {
-  name: 'Signup',
-  data () {
+  name: 'Login',
+  // props: ['clicked'], //そもそも必要ない？
+  data: function(){
     return {
       username: '',
       password: '',
-      currentState: false,
+      //current: this.clicked, //データをcurrentに移行 必要ない？
     };
   },
   methods: {
-    signUp: function () {
+    logIn: function() {
       firebase.auth()
-              .createUserWithEmailAndPassword(this.username, this.password)
+              .signInWithEmailAndPassword(this.username, this.password)
               .then(user => {
-                alert('Create Account: ', user.email);
-                this.currentState = true;
-                console.log('Sign Up and Log In!!');
-                this.$emit('success-signup', true);
+                alert('Sign In is success.');
+                console.log('Sign In is success.');
+                this.$emit('success-login', true);
               })
               .catch(error => {
                 alert(error.message)
               });
     },
     toIndex: function() {
-      this.$emit('return-click-signup', (false));
+      this.$emit('return-click-login', (false)); //親コンポーネントにfalseを引き渡す
     },
-    moveLogin: function() {
-      this.$emit('move-to-login', (false));
+    newUser: function() {
+      this.$emit('move-to-signup', (false));
     }
   }
 }
@@ -64,6 +64,7 @@ li {
 a {
   color: #42b983;
 }
+
 .back {
   background: rgba(100, 100, 100, .5);
   height: 1000px;
@@ -71,7 +72,7 @@ a {
   position: absolute;
   z-index: 99;
 }
-.signup {
+.login {
   width: 50%;
   margin: 100px auto;
   display: flex;
@@ -85,5 +86,13 @@ a {
 input {
   margin: 10px 0;
   padding: 10px;
+}
+.loginbtn {
+  display: flex;
+  margin: 0;
+}
+.returnbtn {
+  display: flex;
+  margin: 0;
 }
 </style>

@@ -3,7 +3,7 @@ import BootstrapVue from 'bootstrap-vue' //bootstrap
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Signup from '../views/Signup.vue'
-import Signin from '../views/Signin.vue'
+import Login from '../views/Login.vue'
 import Index from '../views/Index.vue'
 import Show from '../views/Show.vue'
 import Beans from '../views/Beans.vue'
@@ -19,8 +19,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css' //bootstrap
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Index',
+    component: Index
   },
   {
     path: '/signup',
@@ -28,9 +28,9 @@ const routes = [
     component: Signup
   },
   {
-    path: '/signin',
-    name: 'Signin',
-    component: Signin
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/index',

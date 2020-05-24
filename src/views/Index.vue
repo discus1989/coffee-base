@@ -1,13 +1,26 @@
 <template>
   <!-- wrapper start-->
   <div class="wrapper">
-   　<!--サインインコンポーネント-->
-    <signin v-if="clicked" />
+    
+   　<!--ログインコンポーネント-->
+    <Login v-on:return-click-login='noEmitEventIn'
+           v-on:move-to-signup="moveSignup"
+           v-on:success-login="changeState"
+           v-if="clicked" />
+           
+    <!-- Sign Upコンポーネント -->
+    <Signup v-on:return-click-signup='noEmitEventUp'
+            v-on:move-to-login="moveLogin"
+            v-on:success-signup="changeState"
+            v-if="signupClicked"/>
+    
     <!-- main area start -->
     <div class="main">
       <!--header area start-->
-      <Header></Header>
-      <button type="button" @click="clicked = !clicked">ボタンクリック</button>
+      <Header v-bind:current-state='currentState'
+              v-on:on-login-view-header="emitEventIn"
+              v-on:on-signup-view-header="emitEventUp"></Header>
+      <!--<button type="button" @click="clicked = !clicked">ボタンクリック</button>-->
       <!--header area end-->
       
       <!-- top area start -->
@@ -97,7 +110,8 @@
     <!--main area end-->
 
     <!--side area start-->
-    <SideBar></SideBar>
+    <SideBar v-on:on-login-view-side="emitEventIn"
+             v-on:success-logout="changeState"></SideBar>
     <!--side area end-->
     
   </div>
@@ -107,22 +121,65 @@
 <script>
 import SideBar from '@/components/SideBar.vue';
 import Header from '@/components/Header.vue';
-import Signin from '@/views/Signin.vue';
+import Login from '@/views/Login.vue';
+import Signup from '@/views/Signup.vue'
 
 export default {
   name: 'Index',
   components: {
     SideBar,
     Header,
-    Signin
+    Login,
+    Signup
   },
   data: function () {
     return {
       clicked: false,
+      signupClicked: false,
+      currentState: false,
     };
   },
+  created: function() {
+    if(this.currentState){
+      console.log('Login now.');
+    } else {
+      console.log('Logout now.');
+    }
+  },
   methods: {
-    
+    // loginコンポーネントでreturnボタンを押した時に画面を閉じる
+    noEmitEventIn: function(e){
+      this.clicked = e; //子コンポーネントをeで受け取り、clickedを変更する
+    },
+    // loginコンポーネントを表示させる
+    emitEventIn: function(e){
+      this.clicked = e;
+    },
+    // signupコンポーネントでreturnボタンを押した時に画面を閉じる
+    noEmitEventUp: function(e){
+      this.signupClicked = e;
+    },
+    // signupコンポーネントを表示させる
+    emitEventUp: function(e){
+      this.signupClicked = e;
+    },
+    // login画面からsignup画面に移動
+    moveSignup: function(e) {
+      this.clicked = e;
+      this.signupClicked = !e;
+    },
+    // signup画面からlogin画面に移動
+    moveLogin: function(e) {
+      this.clicked = !e;
+      this.signupClicked = e;
+    },
+    // login, signupに成功したら状態をtrueに変更
+    changeState: function(e){
+      this.currentState = e;
+      this.clicked = false;
+      this.signupClicked = false;
+      console.log('currentState is ' + this.currentState);
+    }
   }
 };
 </script>
@@ -133,6 +190,7 @@ export default {
 /* 全体の設定 */
 .wrapper {
   display: flex;
+  position: relative;
 }
 
 .main {
