@@ -135,17 +135,21 @@ export default {
   },
   data: function () {
     return {
-      clicked: false,
-      signupClicked: false,
-      currentState: false,
+      clicked: false, //loginボタン状態
+      signupClicked: false, //signupボタン状態
+      currentState: false, //ログイン状態
     };
   },
   created: function() {
-    if(this.currentState){
-      console.log('Login now.');
-    } else {
-      console.log('Logout now.');
-    }
+    //ログイン状態を表示
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        console.log('Login now.');
+        this.currentState = true
+      } else {
+        console.log('Logout now.');
+      }
+    });
   },
   methods: {
     // loginコンポーネントでreturnボタンを押した時に画面を閉じる
@@ -174,7 +178,7 @@ export default {
       this.clicked = !e;
       this.signupClicked = e;
     },
-    // login, signup, logoutに成功したら状態をtrueに変更
+    // login, signup, logoutに成功したら状態currentStateをtrueに変更
     changeState: function(e){
       this.currentState = e;
       this.clicked = false;

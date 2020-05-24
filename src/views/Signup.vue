@@ -39,9 +39,11 @@ export default {
                 alert(error.message)
               });
     },
+    // indexのみ表示させる（モーダルを閉じる）
     toIndex: function() {
       this.$emit('return-click-signup', (false));
     },
+    // loginモーダルに移動する
     moveLogin: function() {
       this.$emit('move-to-login', (false));
     }
