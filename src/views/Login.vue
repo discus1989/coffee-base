@@ -18,12 +18,10 @@ import firebase from 'firebase'
 
 export default {
   name: 'Login',
-  // props: ['clicked'], //そもそも必要ない？
   data: function(){
     return {
       username: '',
       password: '',
-      //current: this.clicked, //データをcurrentに移行 必要ない？
     };
   },
   methods: {

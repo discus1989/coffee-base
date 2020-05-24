@@ -15,7 +15,7 @@
             <li class="nav-item"><a href="#" class="nav-link" id="signup-button" v-on:click="signupView"><i class="fas fa-user"></i>Sign up</a></li>
           </div>
           <div class="visible-on-login" v-if="currentState">
-            <li class="nav-item"><a href="#" class="nav-link" id="logout-button"><i class="fas fa-briefcase"></i>Log Out</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" id="logout-button" v-on:click="logOut"><i class="fas fa-briefcase"></i>Log Out</a></li>
           </div>
         </ul>
       </div>
@@ -29,6 +29,18 @@ export default {
   name: 'Header',
   props: ['currentState'],
   methods: {
+    logOut: function() {
+      firebase.auth()
+              .signOut()
+              .then(() => {
+                alert('Log Out. Bye.');
+                this.$emit('success-logout', false);
+              })
+              .catch((error) => {
+                alert('Sign Out error');
+                console.log('Sign Out error');
+              })
+    },
     loginView: function() {
       this.$emit('on-login-view-header', (true));
     },

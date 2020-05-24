@@ -19,7 +19,8 @@
       <!--header area start-->
       <Header v-bind:current-state='currentState'
               v-on:on-login-view-header="emitEventIn"
-              v-on:on-signup-view-header="emitEventUp"></Header>
+              v-on:on-signup-view-header="emitEventUp"
+              v-on:success-logout="changeState"></Header>
       <!--<button type="button" @click="clicked = !clicked">ボタンクリック</button>-->
       <!--header area end-->
       
@@ -173,7 +174,7 @@ export default {
       this.clicked = !e;
       this.signupClicked = e;
     },
-    // login, signupに成功したら状態をtrueに変更
+    // login, signup, logoutに成功したら状態をtrueに変更
     changeState: function(e){
       this.currentState = e;
       this.clicked = false;
