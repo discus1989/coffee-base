@@ -110,7 +110,11 @@
     </div>
     <!--main area end-->
 
-    <!--side area start-->
+    <SideBar v-bind:current-state='currentState'
+             v-on:on-login-view-side="emitEventIn"
+             v-on:on-signin-view-side="emitEventUp"
+             v-on:success-logout="changeState"></SideBar>
+    <!--side area start--
     <SideBar v-on:on-login-view-side="emitEventIn"
              v-on:success-logout="changeState"></SideBar>
     <!--side area end-->
@@ -123,7 +127,7 @@
 import SideBar from '@/components/SideBar.vue';
 import Header from '@/components/Header.vue';
 import Login from '@/views/Login.vue';
-import Signup from '@/views/Signup.vue'
+import Signup from '@/views/Signup.vue';
 
 export default {
   name: 'Index',
@@ -131,7 +135,7 @@ export default {
     SideBar,
     Header,
     Login,
-    Signup
+    Signup,
   },
   data: function () {
     return {
@@ -199,7 +203,7 @@ export default {
 }
 
 .main {
-  width: 75%;
+  width: 100%;
 }
 
 /* トップ */
@@ -218,12 +222,6 @@ export default {
   text-shadow: 2px 3px 4px #62592C;
 }
 
-/* サイドバー*/
-.sidebar {
-  width: 25%;
-  border: solid 1px #000;
-  background-color: #DAC9A6;
-}
 .coffee-item {
   width: 220px;
   margin: 15px;
@@ -280,5 +278,7 @@ export default {
   outline-color: #dc3545;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
 }
-  
+
+/* サイドバー*/
+
 </style>

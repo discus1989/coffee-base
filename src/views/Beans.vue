@@ -122,7 +122,7 @@ export default {
 }
 
 .main {
-  width: 75%;
+  width: 100%;
 }
 
 /* トップ */
@@ -141,12 +141,6 @@ export default {
   text-shadow: 2px 3px 4px #62592C;
 }
 
-/* サイドバー*/
-.sidebar {
-  width: 25%;
-  border: solid 1px #000;
-  background-color: #DAC9A6;
-}
 .coffee-item {
   width: 220px;
   margin: 15px;
@@ -203,4 +197,7 @@ export default {
   outline-color: #dc3545;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
 }
+
+/* サイドバー*/
+
 </style>
