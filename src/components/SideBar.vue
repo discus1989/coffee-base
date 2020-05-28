@@ -8,9 +8,10 @@
     <div class="menu">
       <h2 class="menu-text">Menu</h2>
       <ul>
-        <li><a href="#" class="side-menu-link">コーヒー登録</a></li>
+        <li><a href="#" v-on:click="registButton" class="side-menu-link">コーヒー登録</a></li>
         <li><a href="#"class="side-menu-link">道具登録</a></li>
-        <li><router-link to="/beans" class="side-menu-link">コーヒー豆一覧</router-link></li>
+        <li><a href="#" v-on:click="moveBeans" class="side-menu-link">コーヒー豆一覧</a></li>
+        <!--<li><router-link to="/beans" class="side-menu-link">コーヒー豆一覧</router-link></li>-->
         <li><router-link to="/tools" class="side-menu-link">道具一覧</router-link></li>
         <li><router-link to="/shops" class="side-menu-link">ショップ一覧</router-link></li>
         <li><a href="#" class="side-menu-link">ショップ詳細</a></li>
@@ -54,6 +55,12 @@ export default {
     },
     signupView: function() {
       this.$emit('on-signin-view-side', (true));
+    },
+    registButton: function() {
+      this.$emit('on-register-view-side', (true));
+    },
+    moveBeans: function() {
+      this.$router.push({name: 'Beans', params: { currentState: this.currentState}});
     }
   }
   

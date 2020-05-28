@@ -2,6 +2,11 @@
   <!-- wrapper start-->
   <div class="wrapper">
     
+    <!--コーヒー登録コンポーネント-->
+    <CoffeeRegister v-if="registState"
+                    v-on:return-click-register='registerHide'
+                    v-on:success-coffee-registration='registerHide'></CoffeeRegister>
+    
    　<!--ログインコンポーネント-->
     <Login v-on:return-click-login='noEmitEventIn'
            v-on:move-to-signup="moveSignup"
@@ -28,12 +33,13 @@
       <div class="top">
         <div class="title">
           <div class="title-intro">
-            <h1 class="title-name">Coffee Base</h1>
-            <h2 class="title-intro">コーヒー好きのためのストックアプリ</h2>
+            <h1 class="title-name" v-on:click="loadCoffeeView">Coffee Base</h1>
+            <h2 class="title-intro" v-on:click="downloadCoffeeImages(lca)">コーヒー好きのためのストックアプリ</h2>
           </div>
         </div>
         
         <h4>最近買ったもの</h4>
+        
         <div class="coffee-item">
           <div class="coffee-image-wrapper">
             <router-link to="/show"><img class="coffee-item-image" alt="" src="../assets/demo1.jpg"></router-link>
@@ -48,55 +54,7 @@
         
         <div class="coffee-item">
           <div class="coffee-image-wrapper">
-            <img class="coffee-item-image" alt="" src="photos/demo.jpg">
-          </div>
-          <div class="coffee-detail">
-            <div class="coffee-item-name">アメリカコーヒー</div>
-            <div class="coffee-item-delete-wrapper">
-              <button class="btn btn-danger coffee-item-delete">削除</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="coffee-item">
-          <div class="coffee-image-wrapper">
-            <img class="coffee-item-image" alt="" src="photos/demo.jpg">
-          </div>
-          <div class="coffee-detail">
-            <div class="coffee-item-name">ブラジルコーヒー</div>
-            <div class="coffee-item-delete-wrapper">
-              <button class="btn btn-danger coffee-item-delete">削除</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="coffee-item">
-          <div class="coffee-image-wrapper">
-            <img class="coffee-item-image" alt="" src="photos/demo.jpg">
-          </div>
-          <div class="coffee-detail">
-            <div class="coffee-item-name">メキシココーヒー</div>
-            <div class="coffee-item-delete-wrapper">
-              <button class="btn btn-danger coffee-item-delete">削除</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="coffee-item">
-          <div class="coffee-image-wrapper">
-            <img class="coffee-item-image" alt="" src="photos/demo.jpg">
-          </div>
-          <div class="coffee-detail">
-            <div class="coffee-item-name">エチオピアコーヒー</div>
-            <div class="coffee-item-delete-wrapper">
-              <button class="btn btn-danger coffee-item-delete">削除</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="coffee-item">
-          <div class="coffee-image-wrapper">
-            <img class="coffee-item-image" alt="" src="photos/demo.jpg">
+            <img class="coffee-item-image" alt="" v-bind:src="image">
           </div>
           <div class="coffee-detail">
             <div class="coffee-item-name">コナコーヒー</div>
@@ -110,13 +68,12 @@
     </div>
     <!--main area end-->
 
+    <!--side area start-->
     <SideBar v-bind:current-state='currentState'
              v-on:on-login-view-side="emitEventIn"
              v-on:on-signin-view-side="emitEventUp"
-             v-on:success-logout="changeState"></SideBar>
-    <!--side area start--
-    <SideBar v-on:on-login-view-side="emitEventIn"
-             v-on:success-logout="changeState"></SideBar>
+             v-on:success-logout="changeState"
+             v-on:on-register-view-side='registerView'></SideBar>
     <!--side area end-->
     
   </div>
@@ -128,6 +85,7 @@ import SideBar from '@/components/SideBar.vue';
 import Header from '@/components/Header.vue';
 import Login from '@/views/Login.vue';
 import Signup from '@/views/Signup.vue';
+import CoffeeRegister from '@/components/CoffeeRegister.vue';
 
 export default {
   name: 'Index',
@@ -136,12 +94,15 @@ export default {
     Header,
     Login,
     Signup,
+    CoffeeRegister,
   },
   data: function () {
     return {
       clicked: false, //loginボタン状態
       signupClicked: false, //signupボタン状態
       currentState: false, //ログイン状態
+      registState: false, //コーヒー登録ボタンの状態
+      image: '',
     };
   },
   created: function() {
@@ -149,12 +110,15 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if(user){
         console.log('Login now.');
-        this.currentState = true
+        this.currentState = true;
       } else {
         console.log('Logout now.');
       }
     });
+    this.loadCoffeeView();
+    console.log('mounted,',typeof image);
   },
+  
   methods: {
     // loginコンポーネントでreturnボタンを押した時に画面を閉じる
     noEmitEventIn: function(e){
@@ -182,13 +146,68 @@ export default {
       this.clicked = !e;
       this.signupClicked = e;
     },
-    // login, signup, logoutに成功したら状態currentStateをtrueに変更
+    // login, signup, logoutに成功したら状態currentStateを変更
     changeState: function(e){
       this.currentState = e;
       this.clicked = false;
       this.signupClicked = false;
       console.log('currentState is ' + this.currentState);
-    }
+    },
+    // サイドバーのコーヒー登録ボタンを押したら状態変化
+    registerView: function(e) {
+      console.log('登録が押されました', e);
+      this.registState = e;
+    },
+    // コーヒー登録ボタンを隠す
+    registerHide: function(e) {
+      this.registState = e;
+    },
+    // firebase databaseからコーヒーデータをダウンロード
+    loadCoffeeView: function() {
+      const coffeeRef = firebase
+        .database()
+        .ref('beans')
+        .orderByChild('createdAt');
+      // 過去に登録したイベントハンドラを削除
+      coffeeRef.off('child_added');
+      
+      coffeeRef.on('child_added',(coffeeSnapshot) => {
+        const coffeeId = coffeeSnapshot.key;
+        const coffeeData = coffeeSnapshot.val();
+        console.log(coffeeData);
+        const location = coffeeData.coffeeImageLocation;
+        console.log('coffee data is:', typeof location);
+        console.log(location);
+      
+        //firebase storageからコーヒーの画像データをダウンロード
+        firebase
+          .storage()
+          .ref(location)
+          .getDownloadURL()
+          .then((data) => {
+            console.log('data is: ', data);
+            this.image = data;
+          })
+          .catch((error) => {
+            console.error('cannot download coffee images.', error);
+          });
+      });
+    },
+    //firebase storageからコーヒーの画像データをダウンロード(未使用)
+    downloadCoffeeImages: function(coffeeImageLocation) {
+      firebase
+        .storage()
+        .ref(coffeeImageLocation)
+        .getDownloadURL()
+        .then((data) => {
+          console.log(data);
+          this.image = data;
+        })
+        .catch((error) => {
+          console.error('cannot download coffee images.', error);
+        });
+    },
+    
   }
 };
 </script>

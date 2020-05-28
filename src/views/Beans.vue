@@ -5,7 +5,7 @@
     <!-- main area start -->
     <div class="main">
       <!--header area start-->
-      <Header></Header>
+      <Header v-bind:current-state="currentState"></Header>
       <!--header area end-->
       
       <!-- top area start -->
@@ -108,6 +108,7 @@ import SideBar from '@/components/SideBar.vue';
 import Header from '@/components/Header.vue';
 export default {
   name: 'Index',
+  props: ['currentState'],
   components: {
     SideBar,
     Header
